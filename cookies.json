@@ -1,0 +1,33 @@
+[
+  {
+    "domain": "ecommerce-hml-viop.passagensweb.com.br",
+    "goog:priority": "Medium",
+    "goog:sameParty": false,
+    "goog:session": true,
+    "goog:sourcePort": 443,
+    "goog:sourceScheme": "Secure",
+    "httpOnly": true,
+    "name": "ASP.NET_SessionId",
+    "path": "/",
+    "sameSite": "lax",
+    "secure": false,
+    "size": 41,
+    "value": "nucevbiggivydf4jbmfssd5y"
+  },
+  {
+    "domain": "ecommerce-hml-viop.passagensweb.com.br",
+    "expiry": 1782506983.096362,
+    "goog:priority": "Medium",
+    "goog:sameParty": false,
+    "goog:session": false,
+    "goog:sourcePort": 443,
+    "goog:sourceScheme": "Secure",
+    "httpOnly": false,
+    "name": "CookieEmpresasViop",
+    "path": "/",
+    "sameSite": "none",
+    "secure": false,
+    "size": 320,
+    "value": "HzfhJ%2f33HqAatniIWILfkQNBRIplZ%2bh92oYz5hNVvFKv9op3miNAiaF4T6xNrra5%2fu2XCKtynQAWQnFBX78xBWgDAvgbbQeEBHum3jTahuQZbA4MT7UvljB6yVTmYI62fF6fW4M5iBUOjaV46jRPRY6nSXde20mLf1%2b4GXEDLlwdMwJiRSLNZMBGbseDxrPlxcDwqm27EU%2fzThHvy8rooUD%2bXRqV6Dks2%2bSFn4oFfem%2fXRwvhpzgDiTVJSngx2S5HiQN2vA9p9dY89%2fglWPZDQ%3d%3d"
+  }
+]

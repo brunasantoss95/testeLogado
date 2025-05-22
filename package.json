@@ -1,0 +1,13 @@
+{
+  "name": "wdio-selenium-automation",
+  "type": "module",
+  "devDependencies": {
+    "@wdio/cli": "^9.12.7",
+    "@wdio/local-runner": "^9.12.7",
+    "@wdio/mocha-framework": "^9.12.6",
+    "@wdio/spec-reporter": "^9.12.6"
+  },
+  "dependencies": {
+    "date-fns": "^4.1.0"
+  }
+}
