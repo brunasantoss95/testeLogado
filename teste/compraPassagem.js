@@ -26,26 +26,22 @@ describe('Compra de passagem de ônibus', () => {
         await browser.execute(() => console.log('Cidade origem "Porto Alegre" selecionada'))
 
         // Campo destino
-        const destino = await $('#txtDestino')
-        await destino.waitForDisplayed({timeout: 5000 })
-        await browser.execute(() => console.log('Campo de destino está visível'))
-        await destino.click()
-        await destino.setValue('Santo Ângelo')
+        const destinos = ['Santa Rosa', 'Santo Ângelo', 'Soledade', 'Ijui'];
+        const destinoAleatorio = destinos[Math.floor(Math.random() * destinos.length)];
 
-        // Pausa curta para aguardar sugestões
-        await browser.pause(1000)
-        await browser.execute(() => console.log('Aguardando sugestões de autocomplete'))
+        const campoDestino = await $('#txtDestino');
+        await campoDestino.waitForDisplayed({ timeout: 5000 });
+        await campoDestino.click();
+        await campoDestino.setValue(destinoAleatorio);
 
-        // Simula navegação no autocomplete via teclado
-        await browser.keys(['ArrowDown', 'Enter'])
-        await browser.execute(() => console.log('Cidade destino "Santa Rosa selecionada"'))
+        // Aguarda sugestões de autocomplete
+        await browser.pause(1000);
 
-        // Espera carregamento sumir (se houver)
-        await $('.loadingPersonalizado').waitForDisplayed({ reverse: true, timeout: 5000 })
-        await browser.execute(() => console.log('Carregamento finalizado após seleção de destino'))
+        // Envia 'ArrowDown' e 'Enter' para navegar e selecionar a sugestão
+        await browser.keys(['ArrowDown', 'Enter']);
 
-        // Aguarda carregamento desaparecer (se houver)
-        await $('.loadingPersonalizado').waitForDisplayed({ reverse: true, timeout: 5000 })
+        // Aguarda o carregamento desaparecer (se houver)
+        await $('.loadingPersonalizado').waitForDisplayed({ reverse: true, timeout: 5000 });
 
         // -- 3. Selecionar data 
         const hojeMais5 = new Date()
@@ -91,14 +87,47 @@ describe('Compra de passagem de ônibus', () => {
         await browser.execute(() => console.log('Botão "Buscar" clicado — buscando horários disponíveis'))
 
         // -- 5. Aguardar e selecionar o primeiro horário
-        await browser.waitUntil(async () => {
-            return await $$('#divHorarios .horarioPartida').length > 0
-        }, {
-            timeout: 5000,
-            timeoutMsg: 'Nenhum horário encontrado'
-        })
+        /* await browser.waitUntil(async () => {
+             return await $$('#divHorarios .horarioPartida').length > 0
+         }, {
+             timeout: 5000,
+             timeoutMsg: 'Nenhum horário encontrado'
+         })
+ 
+         await $$('#divHorarios .horarioPartida')[0].click() // seleciona o primeiro horário
+         */
 
-        await $$('#divHorarios .horarioPartida')[0].click() // seleciona o primeiro horário
+        // Espera até que exista pelo menos uma linha de horário visível
+await browser.waitUntil(async () => {
+    const horarios = await $$('tr.cardHorario.row:not([style*="display: none"])');
+    return horarios.length > 0;
+}, {
+    timeout: 10000,
+    timeoutMsg: 'Nenhum horário disponível encontrado após 10 segundos'
+});
+
+// Pega todos os horários visíveis
+const horariosDisponiveis = await $$('tr.cardHorario.row:not([style*="display: none"])');
+
+// Verifica se encontrou algum horário
+if (horariosDisponiveis.length === 0) {
+    throw new Error('Nenhum horário disponível encontrado');
+}
+
+// Escolhe um índice aleatório
+const indiceAleatorio = Math.floor(Math.random() * horariosDisponiveis.length);
+
+// Scrolla para o horário (se precisar)
+await horariosDisponiveis[indiceAleatorio].scrollIntoView();
+
+// Clica no horário aleatório
+await browser.execute(el => el.click(), horariosDisponiveis[indiceAleatorio]);
+
+console.log(`Selecionado o horário de índice ${indiceAleatorio}`);
+
+
+
+
 
         // -- 6. Botão selecionar horario
         await $('#btnCarregaMapa-1').click()
