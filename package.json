@@ -9,5 +9,9 @@
   },
   "dependencies": {
     "date-fns": "^4.1.0"
+  },
+  "scripts": {
+    "test": "wdio run ./wdio.conf.js",
+    "test:spec": "wdio run ./wdio.conf.js --spec"
   }
 }
