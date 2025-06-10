@@ -8,7 +8,7 @@ describe('Compra de passagem de ônibus', () => {
 
     it('Deve realizar uma compra completa', async () => {
         // -- 1. Acessar página de busca
-        await browser.url('https://ecommerce-hml-viop.passagensweb.com.br/Principal')
+        await browser.url('https://url-de-teste/Login')
         await browser.execute(() => console.log('== Iniciando teste de compra de passagem =='))
 
         // -- 2. Origem e destino
@@ -151,11 +151,11 @@ describe('Compra de passagem de ônibus', () => {
 
         const numeroDocumento = await $('#doc-Passageiro-1');
         await numeroDocumento.waitForDisplayed();
-        await numeroDocumento.setValue('1010101010');
+        await numeroDocumento.setValue('xxxxxxxx');
 
         const cpfObrigatorio = await $('#cpf-Passageiro-1');
         await cpfObrigatorio.waitForDisplayed();
-        await cpfObrigatorio.setValue('02838254057'); // mude para o seu CPF
+        await cpfObrigatorio.setValue('xxxxxxxx'); // mude para o seu CPF
 
         // -- 10. Selecionar forma de pagamento
         await browser.execute(() => console.log('Selecionando forma de pagamento: Crédito'));
@@ -163,11 +163,11 @@ describe('Compra de passagem de ônibus', () => {
 
         // -- 11. Preencher dados do cartão
         await browser.execute(() => console.log('Preenchendo dados do cartão'));
-        await $('#cartaoNumeroviacaoouroeprata').setValue('4444333322221111');
+        await $('#cartaoNumeroviacaoouroeprata').setValue('xxxxxxxx');
         await $('#ValidadeCartao_Credito').setValue('05/2030');
         await $('#cartaoCodigoSeguranca').setValue('123');
         await $('#cartaoNomeImpresso').setValue('Usuário Teste');
-        await $('#CpfTitularCartao').setValue('02838254057'); // mude para o seu CPF
+        await $('#CpfTitularCartao').setValue('xxxxxxxx'); // mude para o seu CPF
 
         // -- 12. Botão pagar
         await browser.execute(() => console.log('Clicando no botão "Pagar"'));
