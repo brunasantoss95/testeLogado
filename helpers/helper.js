@@ -1,14 +1,14 @@
 import fs from 'fs'
 
 export async function loginAndSaveSession() {
-    await browser.url('https://ecommerce-hml-viop.passagensweb.com.br/Login')
+    await browser.url('https://url-de-teste/Login')
 
-    await $("[name='LoginUsuario']").setValue('bruna.santos@rodosoft.com.br')
-    await $("[name='LoginSenha']").setValue('Teste@1234')
+    await $("[name='LoginUsuario']").setValue('teste@email.com.br')
+    await $("[name='LoginSenha']").setValue('xxxxxxxx')
     await $("[id='btnLogar']").click()
 
     await browser.waitUntil(async () => {
-        return await browser.getUrl() !== 'https://ecommerce-hml-viop.passagensweb.com.br/Login'
+        return await browser.getUrl() !== 'https://url-de-teste/Login'
     }, {
         timeout: 5000,
         timeoutMsg: 'Login não redirecionou para a página principal'
@@ -19,7 +19,7 @@ export async function loginAndSaveSession() {
 }
 
 export async function restoreSession() {
-    await browser.url('https://ecommerce-hml-viop.passagensweb.com.br/')
+    await browser.url('https://url-de-teste/Login')
 
     const rawCookies = fs.readFileSync('./cookies.json')
     const cookies = JSON.parse(rawCookies)
